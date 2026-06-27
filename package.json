@@ -1,0 +1,47 @@
+{
+  "name": "@fernforge/alchemy",
+  "version": "0.1.0",
+  "description": "Turn AI prose into human-quality writing. A drop-in ruleset that tells your coding agent how to write docs, READMEs, commits, and replies without the tell-tale LLM patterns.",
+  "bin": {
+    "alchemy": "bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "ALCHEMY.md",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node bin/cli.js --help"
+  },
+  "keywords": [
+    "ai",
+    "llm",
+    "writing",
+    "prose",
+    "humanize",
+    "claude",
+    "cursor",
+    "copilot",
+    "agents",
+    "agents.md",
+    "style-guide",
+    "ai-detection",
+    "rules"
+  ],
+  "author": "fernforge <fernforgehq@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fernforge/alchemy.git"
+  },
+  "homepage": "https://github.com/fernforge/alchemy#readme",
+  "bugs": {
+    "url": "https://github.com/fernforge/alchemy/issues"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
