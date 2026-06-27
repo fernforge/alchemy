@@ -17,21 +17,43 @@ your project.
 
 ## Install
 
+Pick whichever fits your stack. They all deliver the same rules.
+
+**Node / npx:**
+
 ```bash
 npx @fernforge/alchemy init
 ```
 
 That writes `ALCHEMY.md` and links it from your `CLAUDE.md`, `AGENTS.md`, `.cursorrules`, or
-Copilot instructions if you have one. Your agent reads the rules whenever it writes after that.
+Copilot instructions if you have one. `npx @fernforge/alchemy print` just prints them.
 
-Just want to read or paste them?
+**Python / pip:**
 
 ```bash
-npx @fernforge/alchemy print
+pip install alchemy-writing
+alchemy init
 ```
 
-Or copy [`ALCHEMY.md`](./ALCHEMY.md) into wherever your tool reads project instructions. It's
-plain Markdown and tied to no particular agent.
+Same `init` and `print` commands. You can also read the rules in code with
+`alchemy_writing.rules()`.
+
+**MCP server** — for agents that should pull the rules on demand across every project, with no
+file to copy. Add to your client config (Claude Desktop, Cursor, Cline):
+
+```json
+{
+  "mcpServers": {
+    "alchemy": { "command": "npx", "args": ["-y", "@fernforge/alchemy-mcp"] }
+  }
+}
+```
+
+It serves a `get_writing_rules` tool and an `alchemy://rules` resource. See
+[`mcp/`](./mcp) for details.
+
+**Or just the file.** Copy [`ALCHEMY.md`](./ALCHEMY.md) into wherever your tool reads project
+instructions. It's plain Markdown and tied to no particular agent.
 
 ## What's in it
 
@@ -65,6 +87,10 @@ uneven, willing to have a point of view. A fooled detector is a side effect.
 
 Found a tic the rules miss? Open an issue or a PR with a real before/after example. Keep it
 concrete. The rules earn their place by being specific, not by being long.
+
+Edit the root [`ALCHEMY.md`](./ALCHEMY.md) only. The copies under `python/` and `mcp/` are
+generated from it by `node scripts/sync-rules.mjs`, and CI fails if they drift. The npm, PyPI,
+and MCP packages publish from GitHub Releases (see [`.github/workflows`](./.github/workflows)).
 
 ## License
 

@@ -1,0 +1,49 @@
+{
+  "name": "@fernforge/alchemy-mcp",
+  "version": "0.1.0",
+  "description": "MCP server that serves the Alchemy ruleset to any agent, so it writes human-quality prose instead of tell-tale LLM text.",
+  "type": "module",
+  "bin": {
+    "alchemy-mcp": "server.js"
+  },
+  "files": [
+    "server.js",
+    "ALCHEMY.md",
+    "README.md"
+  ],
+  "scripts": {
+    "prepack": "node ../scripts/sync-rules.mjs",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "llm",
+    "writing",
+    "humanize",
+    "claude",
+    "agents",
+    "prose"
+  ],
+  "author": "fernforge <fernforgehq@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fernforge/alchemy.git",
+    "directory": "mcp"
+  },
+  "homepage": "https://github.com/fernforge/alchemy#readme",
+  "bugs": {
+    "url": "https://github.com/fernforge/alchemy/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

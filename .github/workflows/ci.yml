@@ -1,0 +1,49 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  drift-guard:
+    # Fail if a sub-package's vendored ALCHEMY.md no longer matches the root source.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/sync-rules.mjs --check
+
+  smoke-node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: CLI init writes and links the ruleset
+        run: |
+          mkdir -p /tmp/proj && printf '# Demo\n' > /tmp/proj/AGENTS.md
+          (cd /tmp/proj && node "$GITHUB_WORKSPACE/bin/cli.js" init)
+          test -f /tmp/proj/ALCHEMY.md
+          grep -q ALCHEMY.md /tmp/proj/AGENTS.md
+      - name: MCP server deps install
+        run: cd mcp && npm install --no-audit --no-fund
+
+  smoke-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: node scripts/sync-rules.mjs
+      - name: Build and install the wheel, exercise the CLI
+        run: |
+          python -m pip install --upgrade pip build
+          cd python && python -m build
+          pip install dist/*.whl
+          alchemy print | head -1
+          python -c "import alchemy_writing; assert alchemy_writing.rules()"

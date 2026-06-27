@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alchemy-writing"
+version = "0.1.0"
+description = "Turn AI prose into human-quality writing. A drop-in ruleset that stops your coding agent from writing like an LLM."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "fernforge", email = "fernforgehq@gmail.com" }]
+keywords = ["ai", "llm", "writing", "prose", "humanize", "claude", "cursor", "agents", "style-guide", "rules"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Text Processing",
+  "Topic :: Software Development :: Documentation",
+]
+
+[project.urls]
+Homepage = "https://github.com/fernforge/alchemy"
+Repository = "https://github.com/fernforge/alchemy"
+"Bug Tracker" = "https://github.com/fernforge/alchemy/issues"
+
+[project.scripts]
+alchemy = "alchemy_writing.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+alchemy_writing = ["ALCHEMY.md"]

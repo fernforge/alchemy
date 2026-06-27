@@ -2,3 +2,10 @@ node_modules/
 *.log
 .npmrc
 .DS_Store
+
+# Python build artifacts
+python/dist/
+python/build/
+**/*.egg-info/
+__pycache__/
+*.pyc

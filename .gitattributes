@@ -1,0 +1,6 @@
+# Keep the ruleset and its synced copies byte-identical across platforms so the
+# drift-guard (scripts/sync-rules.mjs --check) doesn't trip on CRLF differences.
+*.md text eol=lf
+*.mjs text eol=lf
+*.js text eol=lf
+*.py text eol=lf
