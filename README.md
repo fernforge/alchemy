@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./cover.png" alt="Alchemy — write like a human, not an LLM" width="100%">
+</p>
+
 # Alchemy
 
 Turn lead into gold: AI prose into writing that reads like a person wrote it.
